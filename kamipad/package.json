@@ -1,0 +1,23 @@
+{
+	"name": "kamipad",
+	"version": "0.1.0",
+	"description": "Kamipad client UI",
+	"author": "Ricardo B. Machado",
+	"private": true,
+	"license": "MIT",
+	"scripts": {
+		"clean": "rm dist/bundle.js",
+		"start": "webpack-dev-server --hot --mode development",
+		"build-dev": "webpack -d --mode development",
+		"build-prod": "webpack -p --mode production"
+	},
+	"devDependencies": {
+		"awesome-typescript-loader": "^5.2.1",
+		"tslint": "^6.1.2",
+		"tslint-webpack-plugin": "^2.1.0",
+		"typescript": "^3.9.3",
+		"webpack": "^4.43.0",
+		"webpack-cli": "^3.3.11",
+		"webpack-dev-server": "^3.11.0"
+	}
+}
