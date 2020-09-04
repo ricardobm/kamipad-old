@@ -2,6 +2,7 @@ const webpack = require('webpack')
 const path = require('path')
 
 const TSLintPlugin = require('tslint-webpack-plugin')
+const HtmlWebpackPlugin = require('html-webpack-plugin')
 
 const DIST = path.resolve(__dirname, 'dist')
 
@@ -39,6 +40,9 @@ const config = {
 	},
 	plugins: [
 		new TSLintPlugin({ files: ['./src/**/*.ts'] }),
+		new HtmlWebpackPlugin({
+			template: 'src/main.html',
+		}),
 	],
 	devServer: {
 		contentBase: './dist'

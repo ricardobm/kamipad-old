@@ -4,9 +4,7 @@
 # Node files
 node_modules/
 
-# Version only the dist/index.html file
-dist/*
-!dist/index.html
+dist/
 
 # Misc OS files
 .DS_Store
