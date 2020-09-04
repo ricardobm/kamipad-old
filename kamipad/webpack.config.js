@@ -9,12 +9,13 @@ const DIST = path.resolve(__dirname, 'dist')
 
 const config = {
 	entry: [
-		'./src/index.ts'
+		'./src/index.tsx'
 	],
 	output: {
 		path: DIST,
 		filename: 'bundle.js',
 	},
+	devtool: 'source-map',
 	module: {
 		rules: [
 			{
