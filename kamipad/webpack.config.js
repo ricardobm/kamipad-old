@@ -1,8 +1,9 @@
 const webpack = require('webpack')
 const path = require('path')
 
+const CopyPlugin = require('copy-webpack-plugin')
+const HtmlPlugin = require('html-webpack-plugin')
 const TSLintPlugin = require('tslint-webpack-plugin')
-const HtmlWebpackPlugin = require('html-webpack-plugin')
 
 const DIST = path.resolve(__dirname, 'dist')
 
@@ -39,10 +40,15 @@ const config = {
 		],
 	},
 	plugins: [
-		new TSLintPlugin({ files: ['./src/**/*.ts'] }),
-		new HtmlWebpackPlugin({
+		new CopyPlugin({
+			patterns: [
+				{ from: 'static' },
+			],
+		}),
+		new HtmlPlugin({
 			template: 'src/main.html',
 		}),
+		new TSLintPlugin({ files: ['./src/**/*.ts'] }),
 	],
 	devServer: {
 		contentBase: './dist'

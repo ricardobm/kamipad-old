@@ -13,6 +13,7 @@
 	},
 	"devDependencies": {
 		"awesome-typescript-loader": "^5.2.1",
+		"copy-webpack-plugin": "^6.1.0",
 		"css-loader": "^3.5.3",
 		"html-webpack-plugin": "^4.4.1",
 		"node-sass": "^4.14.1",
