@@ -1,0 +1,9 @@
+[package]
+name = "kamipad-data"
+version = "0.1.0"
+authors = ["Ricardo B. Machado <ricardobm@gmail.com>"]
+license = "MIT"
+description = "Kamipad database library"
+repository = "https://github.com/ricardobm/kamipad/"
+publish = false
+edition = "2018"

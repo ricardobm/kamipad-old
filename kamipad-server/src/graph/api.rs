@@ -3,9 +3,9 @@
 use rocket::response::content::Html;
 use rocket::State;
 
-use app::App;
-use graph;
-use logging::RequestLog;
+use crate::app::App;
+use crate::graph;
+use crate::logging::RequestLog;
 
 /// This endpoint just servers the static HTML for the GraphiQL interface.
 #[get("/graphiql")]
