@@ -30,7 +30,6 @@ fn main() {
 
 async fn run() -> i32 {
 	println!("\nStarting Kamipad server - v{}...\n", common::VERSION);
-	println!("Initialized {}", kamipad_data::hello());
 
 	let (mut tx, mut rx) = tokio::sync::mpsc::channel::<i32>(16);
 

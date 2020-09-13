@@ -7,3 +7,9 @@ description = "Kamipad database library"
 repository = "https://github.com/ricardobm/kamipad/"
 publish = false
 edition = "2018"
+
+[dependencies]
+fs2 = "0.4.3"
+
+[dev-dependencies]
+tempdir = "0.3.7"
