@@ -3,6 +3,8 @@
 use crate::logging;
 use crate::util::{Cache, CacheKey, CacheMap, CacheVal};
 
+use kamipad_data as kd;
+
 /// Wraps the entire application state. The singleton instance for this can
 /// be retrieved through the `App::get()` method.
 pub struct App {
@@ -10,6 +12,9 @@ pub struct App {
 	ring_log: logging::RingLogger,
 
 	cache_map: CacheMap,
+
+	#[allow(dead_code)]
+	database: kd::Database,
 
 	// This just resets the global logging when the App instance is discarded.
 	_compat_log_guard: slog_scope::GlobalLoggerGuard,
@@ -21,6 +26,10 @@ impl App {
 	pub fn get() -> &'static App {
 		lazy_static! {
 			static ref APP: App = {
+
+				//============================================================//
+				// Logging setup
+				//============================================================//
 
 				// Compatibility with libraries using `log`
 
@@ -79,10 +88,33 @@ impl App {
 				time!(t_init);
 				info!(app_log, "starting application");
 
+				//============================================================//
+				// Main database
+				//============================================================//
+
+				let db_path = std::env::current_exe().unwrap();
+				let db_path = db_path.parent().unwrap().join("database");
+				info!(app_log, "opening database at {}", db_path.to_string_lossy());
+				let db = match kd::open(db_path, kd::OpenFlags::default()) {
+					Ok(db) => {
+						info!(app_log, "database opened successfully");
+						db
+					}
+					Err(err) => {
+						error!(app_log, "failed to open database: {}", err);
+						std::process::exit(1);
+					}
+				};
+
+				//============================================================//
+				// App instance
+				//============================================================//
+
 				let app = App {
 					log: app_log,
 					ring_log: ring_log,
 					cache_map: CacheMap::new(),
+					database: db,
 
 					_compat_log_guard: compat_log_guard,
 				};
