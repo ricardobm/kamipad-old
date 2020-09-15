@@ -1,3 +1,6 @@
+#[macro_use]
+extern crate lazy_static;
+
 mod error;
 pub use error::Error;
 
@@ -9,3 +12,6 @@ pub type Result<T> = std::result::Result<T, Error>;
 
 mod open;
 pub use open::{open, OpenFlags};
+
+mod id;
+pub use id::ID;
